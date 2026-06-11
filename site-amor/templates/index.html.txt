@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Você me ama?</title>
+
+<style>
+body {
+    margin: 0;
+    background: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial;
+    overflow: hidden;
+}
+
+/* caixa central */
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+}
+
+/* botões */
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* corações */
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: cair linear infinite;
+}
+
+@keyframes cair {
+    from { transform: translateY(-10vh); }
+    to { transform: translateY(110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Você me ama?</h1>
+
+    <div class="botoes">
+        <button onclick="window.location.href='/amo'">Amo</button>
+        <button id="nao">Não amo</button>
+    </div>
+</div>
+
+<script>
+// BOTÃO "NÃO AMO" FUGINDO (VERSÃO QUE FUNCIONA SEM ERRO)
+const nao = document.getElementById("nao");
+
+nao.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    nao.style.position = "absolute";
+    nao.style.left = x + "px";
+    nao.style.top = y + "px";
+});
+
+// CORAÇÕES CAINDO
+function criarCoracao() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+}
+
+setInterval(criarCoracao, 200);
+</script>
+
+</body>
+</html>
