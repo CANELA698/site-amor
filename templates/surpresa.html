@@ -2,156 +2,35 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>💖</title>
+<title>Surpresa</title>
 
 <style>
 body {
-    margin: 0;
+    background: linear-gradient(to bottom, #ffe4ec, #fff);
     font-family: Arial;
-    background: linear-gradient(#ffe6f0, #ffffff);
-    overflow-x: hidden;
+    padding: 20px;
 }
 
-/* PLAYER */
-.player {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-}
-
-/* TEXTO */
-.texto {
-    max-width: 600px;
-    margin: 50px auto;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.6;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 1s;
-}
-
-.texto.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* POLAROID */
-.polaroid {
+img {
     width: 200px;
-    background: white;
-    padding: 10px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    position: absolute;
-    transition: 0.3s;
-}
-
-.polaroid img {
-    width: 100%;
-}
-
-.polaroid:hover {
-    transform: scale(1.05);
-}
-
-/* BALÕES */
-.balloon {
-    position: fixed;
-    bottom: -50px;
-    font-size: 30px;
-    animation: subir 8s linear infinite;
-    cursor: pointer;
-}
-
-@keyframes subir {
-    to { transform: translateY(-120vh); }
-}
-
-/* RESPONSIVO */
-@media(max-width:600px){
-    .polaroid { width: 140px; }
-    .texto { padding: 20px; font-size: 16px; }
+    margin: 20px;
+    border: 10px solid white;
+    transform: rotate(-5deg);
 }
 </style>
 </head>
 
 <body>
 
-<!-- PLAYER SPOTIFY -->
-<div class="player">
-<iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/track/3bidbhpOYeV4knp8AIu8Xn"
-width="300" height="380" frameborder="0"></iframe>
-</div>
+<h2>
+Eu também te amo meu amor, eu te amo minha LUANA 💖<br><br>
+Estamos juntos há mais de 5 anos...<br><br>
+Essa é uma pequena surpresa feita com todo meu carinho 💕
+</h2>
 
-<!-- TEXTO -->
-<div class="texto">
-Eu também te amo meu amor, eu te amo minha LUANA, minha lua, minha atual namorada,
-em breve noiva e futuramente esposa e mãe dos meus filhos... 💖
-</div>
-
-<script>
-// ANIMA TEXTO AO ROLAR
-window.addEventListener("scroll", () => {
-    document.querySelectorAll(".texto").forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 50) {
-            el.classList.add("show");
-        }
-    });
-});
-
-// CRIAR POLAROIDS
-for(let i=1;i<=12;i++){
-    let p = document.createElement("div");
-    p.className = "polaroid";
-
-    p.style.top = (300 + i*250) + "px";
-    p.style.left = (Math.random()*60 + 20) + "%";
-    p.style.transform = "rotate(" + (Math.random()*20 - 10) + "deg)";
-
-    p.innerHTML = `<img src="/static/fotos/foto${i}.jpg">`;
-
-    document.body.appendChild(p);
-}
-
-// BALÕES COM PADRÃO
-const padrao = [5,3,1,4,2];
-let index = 0;
-
-function criarBaloes(){
-    let qtd = padrao[index];
-    index = (index + 1) % padrao.length;
-
-    for(let i=0;i<qtd;i++){
-        let b = document.createElement("div");
-        b.className = "balloon";
-        b.innerHTML = "💗";
-
-        b.style.left = Math.random()*100 + "vw";
-
-        b.onclick = () => {
-            for(let i=0;i<15;i++){
-                let mini = document.createElement("div");
-                mini.innerHTML = "❤️";
-                mini.style.position = "fixed";
-                mini.style.left = b.style.left;
-                mini.style.top = "50%";
-                mini.style.transform = `translate(${Math.random()*200-100}px, ${Math.random()*200-100}px)`;
-                document.body.appendChild(mini);
-                setTimeout(()=>mini.remove(),1000);
-            }
-            b.remove();
-        };
-
-        document.body.appendChild(b);
-        setTimeout(()=>b.remove(),8000);
-    }
-}
-
-setInterval(criarBaloes, 3000);
-</script>
+<img src="/static/fotos/foto1.jpg">
+<img src="/static/fotos/foto2.jpg">
+<img src="/static/fotos/foto3.jpg">
 
 </body>
 </html>
